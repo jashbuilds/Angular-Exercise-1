@@ -1,0 +1,39 @@
+<div class="container my-5">
+    <div
+        class="row d-flex flex-column justify-content-center align-items-center">
+        <form
+            class="d-flex justify-content-center align-items-center">
+            <div class="mb-3 col-6">
+                <label for="inputName"
+                    class="form-label mb-2 fw-normal fs-4">Enter Number</label>
+                <input type="number" class="form-control mb-3" min="0" id="inputName"
+                    name="inputLabel" #number="ngModel"
+                    [class.is-invalid]="number.invalid && number.touched"
+                    aria-describedby="inputName" [class.is-valid]="number.valid"
+                    placeholder="Number.."
+                    required [(ngModel)]="userInput"
+                    (input)="validateInput()" required>
+
+                <button type="button" class="btn btn-primary"
+                    [disabled]="isShowDisabled()" (click)="onSubmit()">Show
+                    Details</button>
+            </div>
+            @if(isShowClicked()) {
+            <div class="col-6">
+                <p
+                    class="text-center mt-3 fw-semibold text-secondary fs-4">Number:</p>
+                <p class="text-center text-secondary fw-semibold fs-4" [class]="numberOutput() % 2 == 0 ? 'text-success' : 'text-danger'">{{
+                    numberOutput() }}</p>
+            </div>
+            } @else {
+            <div class="col-6">
+                <p
+                    class="text-center mt-3 fw-semibold text-secondary fs-5">Enter
+                    number and Click "Submit".</p>
+            </div>
+            }
+
+        </form>
+
+    </div>
+</div>

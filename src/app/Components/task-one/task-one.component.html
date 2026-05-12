@@ -1,0 +1,42 @@
+<div class="container">
+    <div
+        class="row d-flex flex-column justify-content-center align-items-center">
+        <form
+            class="d-flex justify-content-center align-items-center">
+            <div class="mb-3 col-6">
+                <label for="inputLabel"
+                    class="form-label mb-2 fw-normal fs-4">Enter Text</label>
+                <input type="text" class="form-control mb-3" id="inputLabel" #text="ngModel"
+                    [class.is-invalid]="text.invalid && text.touched"
+                    [class.is-valid]="text.valid" placeholder="Text..."
+                    name="inputLabel"
+                    aria-describedby="inputValue" [(ngModel)]="inputVal"
+                    required>
+
+                <div class="invalid-feedback my-2 fw-semibold">Please Fill up
+                    the
+                    Field.</div>
+
+                <button type="button" class="btn btn-primary"
+                    [disabled]="isSubmitDisabled()"
+                    (click)="calculateLength()">Calculate Length</button>
+                <button type="button" class="btn btn-success ms-3"
+                    (click)="enableLength()">Enable Length Button</button>
+            </div>
+
+            @if(isSubmitClicked()) {
+            <div class="col-6">
+                <p class="text-center mt-3 text-secondary fw-semibold fs-5">Length of the
+                    Input Value:
+                    {{ inputLength() }}</p>
+            </div>
+            } @else {
+            <div class="col-6">
+                <p class="text-center mt-3 text-secondary fw-semibold fs-5">Enter text and
+                    Click "Calculate Length"</p>
+            </div>
+            }
+        </form>
+
+    </div>
+</div>
