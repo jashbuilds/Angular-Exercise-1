@@ -7,7 +7,7 @@
                 <label for="inputLabel"
                     class="form-label mb-2 fw-normal fs-4">Enter Text</label>
                 <input type="text" class="form-control mb-3" id="inputLabel" #text="ngModel"
-                    [class.is-invalid]="text.invalid && text.touched"
+                    [class.is-invalid]="text.invalid && text.touched && text.dirty"
                     [class.is-valid]="text.valid" placeholder="Text..."
                     name="inputLabel"
                     aria-describedby="inputValue" [(ngModel)]="inputVal"
@@ -21,7 +21,7 @@
                     [disabled]="isSubmitDisabled()"
                     (click)="calculateLength()">Calculate Length</button>
                 <button type="button" class="btn btn-success ms-3"
-                    (click)="enableLength()">Enable Length Button</button>
+                    (click)="enableLengthButton()">Enable Length Button</button>
             </div>
 
             @if(isSubmitClicked()) {

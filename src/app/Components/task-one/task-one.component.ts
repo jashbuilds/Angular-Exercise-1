@@ -14,7 +14,7 @@ export class TaskOneComponent {
   isSubmitDisabled = signal(true)
   isSubmitClicked = signal(false)
 
-  enableLength() {
+  enableLengthButton() {
     if(this.inputVal() === '') {
       this.isSubmitDisabled.set(true)
     } else {

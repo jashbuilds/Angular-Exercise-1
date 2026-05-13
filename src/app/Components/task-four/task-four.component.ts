@@ -8,24 +8,20 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './task-four.component.css'
 })
 export class TaskFourComponent {
-  isShowClicked = signal(false)
-  isShowDisabled = signal(true)
+  isSubmitClicked = signal(false)
 
   userInput = signal<number | null>(null)
 
   numberOutput = signal<any>(null)
 
   validateInput() {
-    if (this.userInput() !== null) {
-      this.isShowDisabled.set(false)
-    } else {
-      this.isShowDisabled.set(true)
-    }
+    return (
+      this.userInput() !== null
+    )
   }
 
   onSubmit() {
-    this.isShowDisabled.set(true)
-    this.isShowClicked.set(true)
+    this.isSubmitClicked.set(true)
 
     this.numberOutput.set(this.userInput())
     this.userInput.set(null)

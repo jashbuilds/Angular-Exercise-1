@@ -8,17 +8,16 @@
                     class="form-label mb-2 fw-normal fs-4">Enter Number</label>
                 <input type="number" class="form-control mb-3" min="0" id="inputName"
                     name="inputLabel" #number="ngModel"
-                    [class.is-invalid]="number.invalid && number.touched"
+                    [class.is-invalid]="number.invalid && number.touched && number.dirty"
                     aria-describedby="inputName" [class.is-valid]="number.valid"
                     placeholder="Number.."
                     required [(ngModel)]="userInput"
-                    (input)="validateInput()" required>
+                     required>
+                <span class="invalid-feedback">Please enter Number!</span>
 
-                <button type="button" class="btn btn-primary"
-                    [disabled]="isShowDisabled()" (click)="onSubmit()">Show
-                    Details</button>
+                <button type="button" class="btn btn-primary" [disabled]="!validateInput()" (click)="onSubmit()">Submit</button>
             </div>
-            @if(isShowClicked()) {
+            @if(isSubmitClicked()) {
             <div class="col-6">
                 <p
                     class="text-center mt-3 fw-semibold text-secondary fs-4">Number:</p>
@@ -27,9 +26,7 @@
             </div>
             } @else {
             <div class="col-6">
-                <p
-                    class="text-center mt-3 fw-semibold text-secondary fs-5">Enter
-                    number and Click "Submit".</p>
+                <p class="text-center mt-3 fw-semibold text-secondary fs-5">Enter number and Click "Submit".</p>
             </div>
             }
 
