@@ -1,5 +1,6 @@
+
 import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-task-three',
@@ -28,7 +29,7 @@ export class TaskThreeComponent {
     }
   }
 
-  submitDetails() {
+  submitDetails(form: NgForm) {
     this.isShowClicked.set(true)
     this.isShowDisabled.set(true)
 
@@ -37,8 +38,14 @@ export class TaskThreeComponent {
       age: this.userAge()
     }])
 
-    this.userName.set('')
-    this.userAge.set(null)
+    form.reset()
   }
+
+  preventDigits(event: KeyboardEvent) {
+    if (/[0-9]/.test(event.key)) {
+      event.preventDefault();
+    }
+  }
+
 
 }

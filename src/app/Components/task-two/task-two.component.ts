@@ -1,5 +1,6 @@
+import { JsonPipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-task-two',
@@ -21,7 +22,7 @@ export class TaskTwoComponent {
   isShowClicked = signal(false)
   isShowVisible = signal(true)
 
-  submitDetails() {
+  submitDetails(form: NgForm) {
     this.isShowClicked.set(true)
     this.isShowVisible.set(false)
 
@@ -30,16 +31,13 @@ export class TaskTwoComponent {
       age: this.userAge()
     })
 
-    this.userName.set('')
-    this.userAge.set(null)
+    form.reset()
   }
 
   showButton() {
     this.isShowClicked.set(false)
     this.isShowVisible.set(true)
     this.isShowDisabled.set(true)
-
-
   }
 
   validateInput() {
@@ -47,6 +45,12 @@ export class TaskTwoComponent {
       this.isShowDisabled.set(false)
     } else {
       this.isShowDisabled.set(true)
+    }
+  }
+
+  preventDigits(event: KeyboardEvent) {
+    if (/[0-9]/.test(event.key)) {
+      event.preventDefault();
     }
   }
 }

@@ -2,7 +2,7 @@
     <div
         class="row d-flex flex-column justify-content-center align-items-center">
         <form
-            class="d-flex justify-content-center align-items-center">
+            class="d-flex justify-content-center align-items-center" #form="ngForm">
             <div class="mb-3 col-6">
                 <label for="inputName"
                     class="form-label mb-2 fw-normal fs-4">Enter Name</label>
@@ -11,7 +11,7 @@
                     [class.is-invalid]="name.invalid && name.touched"
                     aria-describedby="inputName" [class.is-valid]="name.valid"
                     placeholder="Name.."
-                    required [(ngModel)]="userName"
+                    required [(ngModel)]="userName" (keypress)="preventDigits($event)"
                     (input)="validateInput()" required>
 
                 <div class="invalid-feedback my-2 fw-semibold">Name is
@@ -33,7 +33,7 @@
                     Required.</div>
 
                 <button type="button" class="btn btn-primary"
-                    [disabled]="isShowDisabled()" (click)="submitDetails()">Show
+                    [disabled]="isShowDisabled()" (click)="submitDetails(form)">Show
                     Details</button>
             </div>
             @if(isShowClicked()) {

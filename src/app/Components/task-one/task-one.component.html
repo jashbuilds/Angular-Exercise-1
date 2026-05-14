@@ -2,7 +2,7 @@
     <div
         class="row d-flex flex-column justify-content-center align-items-center">
         <form
-            class="d-flex justify-content-center align-items-center">
+            class="d-flex justify-content-center align-items-center" #form="ngForm">
             <div class="mb-3 col-6">
                 <label for="inputLabel"
                     class="form-label mb-2 fw-normal fs-4">Enter Text</label>
@@ -19,7 +19,7 @@
 
                 <button type="button" class="btn btn-primary"
                     [disabled]="isSubmitDisabled()"
-                    (click)="calculateLength()">Calculate Length</button>
+                    (click)="calculateLength(form)">Calculate Length</button>
                 <button type="button" class="btn btn-success ms-3"
                     (click)="enableLengthButton()">Enable Length Button</button>
             </div>

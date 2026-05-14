@@ -2,20 +2,20 @@
     <div
         class="row d-flex flex-column justify-content-center align-items-center">
         <form
-            class="d-flex justify-content-center align-items-center">
+            class="d-flex justify-content-center align-items-center" #form="ngForm">
             <div class="mb-3 col-6">
                 <label for="inputName"
                     class="form-label mb-2 fw-normal fs-4">Enter Number</label>
                 <input type="number" class="form-control mb-3" min="0" id="inputName"
                     name="inputLabel" #number="ngModel"
-                    [class.is-invalid]="number.invalid && number.touched && number.dirty"
+                    [class.is-invalid]="number.invalid && number.touched"
                     aria-describedby="inputName" [class.is-valid]="number.valid"
                     placeholder="Number.."
                     required [(ngModel)]="userInput"
                      required>
                 <span class="invalid-feedback">Please enter Number!</span>
 
-                <button type="button" class="btn btn-primary" [disabled]="!validateInput()" (click)="onSubmit()">Submit</button>
+                <button type="button" class="btn btn-primary" [disabled]="!validateInput()" (click)="onSubmit(form)">Submit</button>
             </div>
             @if(isSubmitClicked()) {
             <div class="col-6">

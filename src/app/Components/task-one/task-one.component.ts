@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-task-one',
@@ -15,17 +15,18 @@ export class TaskOneComponent {
   isSubmitClicked = signal(false)
 
   enableLengthButton() {
-    if(this.inputVal() === '') {
-      this.isSubmitDisabled.set(true)
-    } else {
+    if(this.inputVal() !== '') {
       this.isSubmitDisabled.set(false)
+    } else {
+      this.isSubmitDisabled.set(true)
     }
   }
 
-  calculateLength() {
+  calculateLength(form: NgForm) {
     this.inputLength.set(String(this.inputVal().length))
     this.isSubmitClicked.set(true)
     this.isSubmitDisabled.set(true)
-    this.inputVal.set('')
+    form.reset()
   }
+
 }

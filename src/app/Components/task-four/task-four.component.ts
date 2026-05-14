@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-task-four',
@@ -20,10 +20,10 @@ export class TaskFourComponent {
     )
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     this.isSubmitClicked.set(true)
 
     this.numberOutput.set(this.userInput())
-    this.userInput.set(null)
+    form.reset()
   }
 }
