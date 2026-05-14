@@ -13,10 +13,7 @@ export class TaskThreeComponent {
 
   isShowDisabled = signal(true)
 
-  userDetails = signal<any[]>([{
-    name: '',
-    age: ''
-  }])
+  userDetails = signal<any[]>([])
 
   userName = signal('')
   userAge = signal<number | null>(null)
@@ -33,10 +30,12 @@ export class TaskThreeComponent {
     this.isShowClicked.set(true)
     this.isShowDisabled.set(true)
 
-    this.userDetails.set([{
+    const newUserData = {
       name: this.userName(),
       age: this.userAge()
-    }])
+    }
+
+    this.userDetails.update(prev => [...prev, newUserData])
 
     form.reset()
   }

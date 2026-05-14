@@ -2,8 +2,9 @@
     <div
         class="row d-flex flex-column justify-content-center align-items-center">
         <form
-            class="d-flex justify-content-center align-items-center" #form="ngForm">
-            <div class="mb-3 col-6">
+            class="d-flex justify-content-center align-items-center"
+            #form="ngForm">
+            <div class="mb-3 col-sm-6">
                 <label for="inputName"
                     class="form-label mb-2 fw-normal fs-4">Enter Name</label>
                 <input type="text" class="form-control mb-3" id="inputName"
@@ -11,7 +12,8 @@
                     [class.is-invalid]="name.invalid && name.touched"
                     aria-describedby="inputName" [class.is-valid]="name.valid"
                     placeholder="Name.."
-                    required [(ngModel)]="userName" (keypress)="preventDigits($event)"
+                    required [(ngModel)]="userName"
+                    (keypress)="preventDigits($event)"
                     (input)="validateInput()" required>
 
                 <div class="invalid-feedback my-2 fw-semibold">Name is
@@ -33,20 +35,30 @@
                     Required.</div>
 
                 <button type="button" class="btn btn-primary"
-                    [disabled]="isShowDisabled()" (click)="submitDetails(form)">Show
+                    [disabled]="isShowDisabled()"
+                    (click)="submitDetails(form)">Show
                     Details</button>
             </div>
             @if(isShowClicked()) {
-            <div class="col-6">
-                <p class="text-center mt-3 fw-semibold text-secondary fs-4">User
-                    Details</p>
-                <p class="text-center text-secondary fw-medium fs-4">Name: {{
-                    userDetails()[0].name }}</p>
-                <p class="text-center text-secondary fw-medium fs-4">Age: {{
-                    userDetails()[0].age }}</p>
+            <div class="col-sm-6 d-flex justify-content-center align-items-center">
+                <table class="table-bordered table-responsive">
+
+                    <tr>
+                        <th class="p-3 text-center">Name</th>
+                        <th class="p-3 text-center">Age</th>
+                    </tr>
+                    @for (data of userDetails(); track $index) {
+                    <tr>
+                        <td class="p-2 text-end">{{ data.name }}</td>
+                        <td class="p-2 text-end">{{ data.age }}</td>
+                    </tr>
+                    }
+
+                </table>
             </div>
+
             } @else {
-            <div class="col-6">
+            <div class="col-sm-6">
                 <p
                     class="text-center mt-3 fw-semibold text-secondary fs-5">Enter
                     details and Click "Show Details".</p>
